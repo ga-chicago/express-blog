@@ -1,0 +1,14 @@
+<h1>Fro-Yo Problems</h1>
+<ul>
+  {{#each allPosts}}
+    <li><a href="/posts/all/{{this.id}}">{{this.title}}</a></li>
+  {{/each}}
+</ul>
+
+<form action="/posts/form" method="POST">
+  <input name="title" placeholder="Title"/><br/>
+  <input name="author" placeholder="Author"/><br/>
+  <input name="date" placeholder="Date"/><br/>
+  <input name="text" placeholder="Your Fro-yo Related Blog Post Here..."/><br/>
+  <button>Submit</button>
+</form>
