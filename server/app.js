@@ -8,6 +8,7 @@ var express = require('express'),
 var PostController = require('./controllers/PostController');
 var CommentController = require('./controllers/CommentController');
 
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/posts', PostController);
 app.use('/comments', CommentController);

@@ -15,7 +15,8 @@ router.get('/all', function(request, response){
 //Get request to /posts/all/:id
 router.get('/all/:id', function(request, response){
   var id = request.params.id;
-  Post.findById(id, function(err, post){
+  Post.findById(id).populate('comments').exec(function(err, post){
+    console.log(post)
     response.render('post', post);
   })
 })
@@ -38,5 +39,37 @@ router.post('/form', function(request, response){
 
   response.redirect('/posts/all');
 })
+
+
+
+///////////////////////////////////
+//////////////API//////////////////
+///////////////////////////////////
+
+// PATCH request to /posts/:id
+router.patch('/:id', function(request, response){
+  var id = request.params.id;
+  Post.update({_id: id}, request.body, function(err){
+    Post.findById(id, function(err, post){
+      response.json(post);
+    })
+  })
+});
+
+// DELETE request /posts/:id
+router.delete('/:id', function(request, response){
+  var id = request.params.id;
+  Post.findById(id, function(err, post){
+    post.remove();
+    response.send("success");
+  })
+})
+
+
+
+
+
+
+
 
 module.exports = router;

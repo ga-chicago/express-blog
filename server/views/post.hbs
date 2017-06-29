@@ -1,9 +1,22 @@
-<h1>{{title}}</h1>
+<div id="title-text">
+  <h1 id="title">{{title}}</h1>
+  <button id="edit-button">Edit</button>
+</div>
+<div style="display: none;" id="title-edit">
+  <input value="{{title}}" id="title-input"/><button id="save-button">Save</button>
+</div>
 <h2>{{author}}</h2>
 <h3>{{date}}</h3>
 <p>{{text}}</p>
 
+<button id="delete">Delete</button>
+
 <form action="/comments/new" method="POST">
   <input name="text" placeholder="Your Fro-yo Reaction....">
+  <input name="postId" value="{{id}}" id="postId"/>
   <button>Submit</button>
 </form>
+
+{{#each comments}}
+  {{this.text}}
+{{/each}}
