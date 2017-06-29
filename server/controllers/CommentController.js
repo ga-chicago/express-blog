@@ -9,6 +9,7 @@ var express = require('express'),
 router.post('/new', function(request, response){
   var comment = new Comment({text: request.body.text});
   comment.save();
+  I JUST TOTALLY BROKE EVERYTHING RIGHT HERE
   response.redirect(request.get('referer'));
 })
 
